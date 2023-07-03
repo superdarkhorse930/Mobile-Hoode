@@ -13,7 +13,7 @@ export default function ReviewBox(props) {
       <View style={styles.subBox}>
         <Text style={styles.subTitle}>Reviews</Text>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 5}}>
-          <AntDesign name="star" size={25} color="yellow" />
+          <AntDesign name="star" size={25} color="#EDD224" />
           <Text style={styles.subText}>{props.review}</Text>
         </View>
       </View>

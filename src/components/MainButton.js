@@ -9,6 +9,10 @@ export default function MainButton(props) {
         backgroundColor: props.bgColor,
         width: '100%',
         alignItems: 'center',
+        display: 'flex',
+        gap: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
         padding: 17
       }}
     >
@@ -19,6 +23,9 @@ export default function MainButton(props) {
       }}>
         {props.title}
       </Text>
+      {
+        props.icon && props.icon
+      }
     </TouchableOpacity>
   )
 }

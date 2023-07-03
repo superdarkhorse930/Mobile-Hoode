@@ -10,26 +10,6 @@ import UploadDocument from '../../components/UploadDocument';
 
 export default function DisputedServicesReview() {
   const navigation = useNavigation();
-  const [amount, setAmount] = useState("")
-  const [comment, setComment] = useState("")
-  const [disputeDocument, setDisputeDocument] = useState(null);
-
-  const pickDisputeDocument = async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({});
-      setDisputeDocument(result.uri);
-    } catch (err) {
-      console.log('Error picking document', err);
-    }
-  };
-
-  const handleAmountChange = (inputText) => {
-    setAmount(inputText)
-  }
-
-  const handleCommentChange = (inputText) => {
-    setComment(inputText)
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,10 +18,11 @@ export default function DisputedServicesReview() {
           <BackButton arrowColor="black" backColor="#F6F6F6" />
           <View style={styles.headerTitle}>
             <Text style={styles.headerText}>Dispute</Text>
-            <Ionicons name='ios-warning' size={22} />
+            <Image source={require('../../../assets/icons/warning.png')} style={{width: 18, height: 18}} />
           </View>
         </View>
-        <View style={{gap: 20, paddingBottom: 30}}>
+        <Text style={styles.title}>Disputed Services</Text>
+        <View style={styles.content}>
           <View style={styles.subTitleContainer}>
             <View style={styles.subTitleLeft}>
               <WarningButton iconColor="#232323" backColor="#9EE970" />
@@ -59,39 +40,20 @@ export default function DisputedServicesReview() {
           <View style={styles.imageBox}>
             <ScrollView horizontal={true}>
               <View style={{display:'flex', flexDirection: 'row', gap: 10}}>
-                <Image source={require("../../../assets/imags/image1.png")} alt='image1' /> 
-                <Image source={require("../../../assets/imags/image2.png")} alt='image2' /> 
-                <Image source={require("../../../assets/imags/image3.png")} alt='image3' /> 
+                <Image source={require("../../../assets/imags/image1_small.png")} alt='image1' /> 
+                <Image source={require("../../../assets/imags/image2_small.png")} alt='image2'  /> 
+                <Image source={require("../../../assets/imags/image3_small.png")} alt='image3'  /> 
               </View>
             </ScrollView>
           </View>
           <ReviewBox amount={100} review="5.0" time={4} />
-          <View style={styles.InputBox}>
-            <Text style={styles.inputBoxTitle}>Actual Amount</Text>
-            <TextInput
-             onChangeText={handleAmountChange}
-             value={amount} 
-             style={styles.amountInput}
-             placeholder='Enter amount'
-             />
-          </View>
-          <View style={styles.InputBox}>
-            <Text style={styles.inputBoxTitle}>Comment</Text>
-            <TextInput
-              multiline={true}
-              numberOfLines={4}
-              textAlignVertical="top"
-              onChangeText={handleCommentChange}
-              value={comment} 
-              style={styles.amountInput}
-              placeholder='Describe the issue'
-             />
-          </View>
-          <View style={styles.InputBox}>
-            <Text style={styles.inputBoxTitle}>Upload reference (If needed)</Text>
-            <UploadDocument pickDocument={pickDisputeDocument} selectedDocument={disputeDocument} />
-          </View>
-          <MainButton bgColor="#9EE970" fontColor="black" title="Submit to review" />
+          <MainButton 
+            bgColor="black" 
+            fontColor="white" 
+            title="Review"
+            icon={<Image source={require('../../../assets/icons/warning.png')} style={{width: 18, height: 18}} />}
+            onPress={() => navigation.navigate('Disputed Services Pending')} 
+          />
         </View>
       </ScrollView> 
     </SafeAreaView> 
@@ -104,6 +66,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
     color: '#232323',
+    flex: 1
   },
   header: {
     paddingTop: 26,
@@ -122,6 +85,18 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: 700,
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: 700,
+    color: '#232323'
+  },
+  content: {
+    paddingVertical: 17,
+    paddingHorizontal: 16,
+    backgroundColor: '#F5F5F5',
+    gap: 20,
+    borderRadius: 12
   },
   subTitleContainer: {
     display: 'flex',
@@ -159,26 +134,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 500,
     lineHeight: 25
-  }, 
+  },
   imageBox: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 10
+    gap: 10,
   },
-  InputBox: {
-    gap: 10
-  },
-  amountInput: {
-    borderWidth: 2,
-    borderRadius: 14, 
-    borderColor: 'rgba(191, 191, 191, 0.6)',
-    paddingVertical: 13,
-    paddingHorizontal: 17,
-    fontSize: 16
-  },
-  inputBoxTitle: {
-    fontWeight: 600, 
-    fontSize: 16
-  }
 })

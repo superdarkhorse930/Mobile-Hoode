@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, ScrollView, StyleSheet, View, Text, TextInput } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../../components/BackButton';
 import WarningButton from '../../components/warningButton';
@@ -38,7 +37,7 @@ export default function DisputedServicesSubmit() {
           <BackButton arrowColor="black" backColor="#F6F6F6" />
           <View style={styles.headerTitle}>
             <Text style={styles.headerText}>Dispute</Text>
-            <Ionicons name='ios-warning' size={22} />
+            <Image source={require('../../../assets/icons/warning.png')} style={{width: 18, height: 18}} />
           </View>
         </View>
         <View style={{gap: 20, paddingBottom: 30}}>
@@ -91,7 +90,7 @@ export default function DisputedServicesSubmit() {
             <Text style={styles.inputBoxTitle}>Upload reference (If needed)</Text>
             <UploadDocument pickDocument={pickDisputeDocument} selectedDocument={disputeDocument} />
           </View>
-          <MainButton bgColor="#9EE970" fontColor="black" title="Submit to review" />
+          <MainButton bgColor="#9EE970" fontColor="black" title="Submit to review" onPress={() => navigation.navigate('Disputed Services Review')} />
         </View>
       </ScrollView> 
     </SafeAreaView> 
