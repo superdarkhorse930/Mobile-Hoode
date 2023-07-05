@@ -6,6 +6,7 @@ import Payables from './screens/payables';
 import DisputedServicesSubmit from './screens/desputedServices/submitScreen';
 import DisputedServicesReview from './screens/desputedServices/reviewScreen';
 import DisputedServicesPending from './screens/desputedServices/pendingScreen';
+import PayableHistory from './screens/payableHistory';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,11 @@ export default function StackNavigator() {
 				<Stack.Screen
 					name="Payables"
 					component={Payables}
+					options={{ headerShown: false }}
+				/>
+				<Stack.Screen
+					name="Payable History"
+					component={PayableHistory}
 					options={{ headerShown: false }}
 				/>
 				<Stack.Screen

@@ -21,7 +21,7 @@ export default function Payables() {
   };
 
   const gotoSubmit = () => {
-    navigation.navigate('Disputed Services Submit');
+    navigation.navigate('Payable History');
   }
 
   return (
